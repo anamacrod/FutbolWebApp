@@ -1,0 +1,51 @@
+﻿Use cWebView.pkg
+Use cWebPanel.pkg
+Use cWebForm.pkg 
+Use cWebGrid.pkg
+Use cWebColumn.pkg
+Use centrenadorDataDictionary.dd
+
+Object oEntrenadoresView is a cWebView
+    Set piWidth to 700
+    Set psCaption to "EntrenadoresView"
+    Set peLayoutType to ltGrid
+    Set piColumnCount to 2
+    Set piRowCount to 1
+    
+    Object oEntrenador_DD is a centrenadorDataDictionary
+    End_Object
+    
+    Set Main_DD to oEntrenador_DD
+    Set Server to oEntrenador_DD
+
+    Object oWebGrid1 is a cWebGrid
+        Set Server to oEntrenador_DD
+        Set piColumnSpan to 2
+        
+        Object oWebColumn1 is a cWebColumn
+            Entry_Item entrenador.ID
+            Set psCaption to "ID"
+        End_Object
+        
+        Object oWebColumn2 is a cWebColumn
+            Entry_Item entrenador.Nombre
+            Set psCaption to "Nombre"
+        End_Object
+        
+        Object oWebColumn3 is a cWebColumn
+            Entry_Item entrenador.Apellido
+            Set psCaption to "Apellido"
+        End_Object
+        
+        Object oWebColumn4 is a cWebColumn
+            Entry_Item entrenador.Nacionalidad
+            Set psCaption to "Nacionalidad"
+        End_Object
+        
+        Object oWebColumn5 is a cWebColumn
+            Entry_Item entrenador.EquipoID
+            Set psCaption to "EquipoID"
+        End_Object
+    End_Object
+    
+End_Object

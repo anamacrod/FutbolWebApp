@@ -1,0 +1,51 @@
+﻿Use cWebView.pkg
+Use cWebPanel.pkg
+Use cWebForm.pkg
+Use cWebGrid.pkg
+Use cWebColumn.pkg
+Use cjugadorDataDictionary.dd
+
+Object oJugadoresView is a cWebView
+    Set piWidth to 700
+    Set psCaption to "JugadoresView"
+    Set peLayoutType to ltGrid
+    Set piColumnCount to 2
+    Set piRowCount to 1
+    
+    Object oJugador_DD is a cjugadorDataDictionary
+    End_Object
+    
+    Set Main_DD to oJugador_DD
+    Set Server to oJugador_DD
+
+    Object oWebGrid1 is a cWebGrid
+        Set Server to oJugador_DD
+        Set piColumnSpan to 2
+        
+        Object oWebColumn1 is a cWebColumn
+            Entry_Item jugador.ID
+            Set psCaption to "ID"
+        End_Object
+        
+        Object oWebColumn2 is a cWebColumn
+            Entry_Item jugador.Nombre
+            Set psCaption to "Nombre"
+        End_Object
+        
+        Object oWebColumn3 is a cWebColumn
+            Entry_Item jugador.Apellido
+            Set psCaption to "Apellido"
+        End_Object
+        
+        Object oWebColumn4 is a cWebColumn
+            Entry_Item jugador.Nacionalidad
+            Set psCaption to "Nacionalidad"
+        End_Object
+        
+        Object oWebColumn5 is a cWebColumn
+            Entry_Item jugador.EquipoID
+            Set psCaption to "EquipoID"
+        End_Object
+    End_Object
+
+End_Object

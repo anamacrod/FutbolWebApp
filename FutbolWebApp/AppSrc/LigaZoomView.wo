@@ -1,0 +1,58 @@
+﻿Use cWebView.pkg
+Use cWebPanel.pkg
+Use cWebForm.pkg
+Use cWebButton.pkg
+Use cligaDataDictionary.dd
+
+Object oLigaZoomView is a cWebView
+    Set piWidth to 600
+    Set psCaption to "Ficha de Liga (Mantenimiento)"
+    Set peLayoutType to ltGrid
+    Set piColumnCount to 12
+
+    // Declaración del Diccionario de Datos de Liga
+    Object oLiga_DD is a cligaDataDictionary
+    End_Object
+    
+    Set Main_DD to oLiga_DD
+    Set Server to oLiga_DD
+
+    // Panel principal con los campos de entrada para ligas
+    Object oWebMainPanel is a cWebPanel
+        Set peLayoutType to ltGrid
+        Set piColumnCount to 12
+        Set piColumnSpan to 12
+
+        Object oIdForm is a cWebForm
+            Entry_Item liga.ID
+            Set psCaption to "ID:"
+            Set piColumnSpan to 4
+            Set pbEnabled to False
+        End_Object
+
+        Object oNombreForm is a cWebForm
+            Entry_Item liga.Nombre
+            Set psCaption to "Nombre de Liga:"
+            Set piColumnSpan to 8
+        End_Object
+
+        Object oPaisForm is a cWebForm
+            Entry_Item liga.Pais
+            Set psCaption to "País:"
+            Set piColumnSpan to 12
+        End_Object
+
+        Object oEquiposForm is a cWebForm
+            Entry_Item liga.Equipos
+            Set psCaption to "Equipos Actuales:"
+            Set piColumnSpan to 6
+        End_Object
+
+        Object oEquiposMaxForm is a cWebForm
+            Entry_Item liga.EquiposMax
+            Set psCaption to "Equipos Máximos:"
+            Set piColumnSpan to 6
+        End_Object
+    End_Object
+
+End_Object

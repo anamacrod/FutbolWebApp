@@ -1,0 +1,41 @@
+﻿Use cWebView.pkg
+Use cWebPanel.pkg
+Use cWebForm.pkg
+Use cWebGrid.pkg
+Use cWebColumn.pkg
+Use cequipoDataDictionary.dd
+
+Object oEquipoView is a cWebView
+    Set piWidth to 700
+    Set psCaption to "EquipoView"
+    Set peLayoutType to ltGrid
+    Set piColumnCount to 2
+    Set piRowCount to 1
+
+    Object oEquipo_DD is a cequipoDataDictionary
+    End_Object
+    
+    Set Main_DD to oEquipo_DD
+    Set Server to oEquipo_DD
+
+    Object oWebGrid1 is a cWebGrid
+        Set Server to oEquipo_DD
+        Set piColumnSpan to 2
+        
+        Object oWebColumn1 is a cWebColumn
+            Entry_Item equipo.ID
+            Set psCaption to "ID"
+        End_Object
+        
+        Object oWebColumn2 is a cWebColumn
+            Entry_Item equipo.Nombre
+            Set psCaption to "Nombre"
+        End_Object
+        
+        Object oWebColumn3 is a cWebColumn
+            Entry_Item equipo.LigaID
+            Set psCaption to "LigaID"
+        End_Object
+    End_Object
+    
+End_Object
