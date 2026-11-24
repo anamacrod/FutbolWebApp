@@ -3,16 +3,28 @@ Use cWebPanel.pkg
 Use cWebForm.pkg
 Use cWebButton.pkg
 Use cligaDataDictionary.dd
+Use cequipoDataDictionary.dd
+Use cWebList.pkg
+Use cWebColumn.pkg
 
 Object oLigaZoomView is a cWebView
     Set piWidth to 600
     Set psCaption to "Ficha de Liga (Mantenimiento)"
     Set peLayoutType to ltGrid
     Set piColumnCount to 12
+    Set peViewType to vtZoom
 
     // Declaración del Diccionario de Datos de Liga
     Object oLiga_DD is a cligaDataDictionary
     End_Object
+    
+    //Sprint 2. Segunda variante: lista dentro de la ficha
+    
+    Object oEquiposDeLiga_DD is a cequipoDataDictionary
+        Set DDO_Server to oLiga_DD
+        Set Constrain_File to liga.File_Number
+    End_Object
+    //
     
     Set Main_DD to oLiga_DD
     Set Server to oLiga_DD
@@ -21,7 +33,7 @@ Object oLigaZoomView is a cWebView
     Object oWebMainPanel is a cWebPanel
         Set peLayoutType to ltGrid
         Set piColumnCount to 12
-        Set piColumnSpan to 12
+        //Set piColumnSpan to 12
 
         Object oIdForm is a cWebForm
             Entry_Item liga.ID
@@ -53,6 +65,54 @@ Object oLigaZoomView is a cWebView
             Set psCaption to "Equipos Máximos:"
             Set piColumnSpan to 6
         End_Object
+        
+        //Sprint 2. From Parent · Mostrar los equipos de una liga.Primera variante: botón «Ver equipos»
+        
+        Object oVerEquipos is a cWebButton
+            Set psCaption to "Ver equipos"
+            Set Server to oLiga_DD
+            Set piColumnSpan to 12
+            //para ocultar botón de esta variante
+            //Set pbRender to False
+            //
+            WebRegisterPath ntNavigateForward oEquipoView
+
+            Procedure OnClick
+                Boolean bHasLiga
+
+                Get HasRecord of oLiga_DD to bHasLiga
+                If (bHasLiga) Send NavigatePath
+            End_Procedure
+        End_Object
+        
+        //Sprint 2: segunda variante lista dentro de la ficha.
+        
+        Object oListaEquiposDeLiga is a cWebList
+            Set Server to oEquiposDeLiga_DD
+            Set piColumnSpan to 12
+            Set pbFillHeight to False
+            Set piHeight to 230
+            Set pbRender to False
+
+            Object oNombreEquipo is a cWebColumn
+                Entry_Item equipo.Nombre
+                Set psCaption to "Equipos de la liga"
+            End_Object
+        End_Object
+        
+        //
     End_Object
+    
+    //Sprint 2: segunda variannte. 
+    
+    Procedure OnNavigateForward tWebNavigateData NavigateData Handle hoInvokingView Handle hoInvokingObject
+        Boolean bHasLiga
+
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+        Get HasRecord of oLiga_DD to bHasLiga
+        WebSet pbRender of oListaEquiposDeLiga to bHasLiga
+
+        If (bHasLiga) Send RefreshListFromDD of oListaEquiposDeLiga
+    End_Procedure
 
 End_Object

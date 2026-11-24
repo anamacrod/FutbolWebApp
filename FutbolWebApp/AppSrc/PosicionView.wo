@@ -1,7 +1,7 @@
 ﻿Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebForm.pkg
-Use cWebGrid.pkg
+Use cWebList.pkg
 Use cWebColumn.pkg
 Use cposicionDataDictionary.dd
 
@@ -11,6 +11,7 @@ Object oPosicionView is a cWebView
     Set peLayoutType to ltGrid
     Set piColumnCount to 2
     Set piRowCount to 1
+    Set peViewType to vtSelect
     
     Object oPosicion_DD is a cposicionDataDictionary
     End_Object
@@ -18,7 +19,7 @@ Object oPosicionView is a cWebView
     Set Main_DD to oPosicion_DD
     Set Server to oPosicion_DD
 
-    Object oWebGrid1 is a cWebGrid
+    Object oWebGrid1 is a cWebList
         Set Server to oPosicion_DD
         Set piColumnSpan to 2
         

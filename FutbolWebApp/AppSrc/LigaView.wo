@@ -1,7 +1,7 @@
 ﻿Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebForm.pkg
-Use cWebGrid.pkg
+Use cWebList.pkg
 Use cWebColumn.pkg
 Use cligaDataDictionary.dd
 
@@ -11,6 +11,7 @@ Object oLigaView is a cWebView
     Set peLayoutType to ltGrid
     Set piColumnCount to 2
     Set piRowCount to 1
+    Set peViewType to vtSelect
 
     Object oLiga_DD is a cligaDataDictionary
     End_Object
@@ -18,10 +19,32 @@ Object oLigaView is a cWebView
     Set Main_DD to oLiga_DD
     Set Server to oLiga_DD
 
-    Object oWebGrid1 is a cWebGrid
+    Object oWebGrid1 is a cWebList
         Set Server to oLiga_DD
         Set piColumnSpan to 2
         
+       // sprint 2// 
+       
+        Set pbServerOnRowClick to True
+        WebRegisterPath ntNavigateForward oLigaZoomView
+
+        Procedure OnRowClick String sRowID Integer iColumnIndex
+            String sCurrentRowID
+            tWebNavigateData NavigateData
+
+            WebGet psCurrentRowID to sCurrentRowID
+            If (sRowID = "" or sRowID <> sCurrentRowID) Procedure_Return
+
+            Get GetNavigateData of oLigaView to NavigateData
+            If (NavigateData.eNavigateType = nfFromChild) Begin
+                Send NavigateClose of oLigaView Self
+                Procedure_Return
+            End
+
+            Send NavigatePath
+        End_Procedure
+        
+        //
         Object oWebColumn1 is a cWebColumn
             Entry_Item liga.ID
             Set psCaption to "ID"

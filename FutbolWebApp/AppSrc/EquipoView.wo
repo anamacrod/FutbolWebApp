@@ -1,9 +1,10 @@
 ﻿Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebForm.pkg
-Use cWebGrid.pkg
+Use cWebList.pkg
 Use cWebColumn.pkg
 Use cequipoDataDictionary.dd
+Use cligaDataDictionary.dd
 
 Object oEquipoView is a cWebView
     Set piWidth to 700
@@ -11,16 +12,41 @@ Object oEquipoView is a cWebView
     Set peLayoutType to ltGrid
     Set piColumnCount to 2
     Set piRowCount to 1
+    Set peViewType to vtSelect
+    
+    //sprint 2//
+    
+    Object oLiga_DD is a cligaDataDictionary
+    End_Object
+    
+    //
 
     Object oEquipo_DD is a cequipoDataDictionary
+        Set DDO_Server to oLiga_DD
     End_Object
     
     Set Main_DD to oEquipo_DD
     Set Server to oEquipo_DD
 
-    Object oWebGrid1 is a cWebGrid
+    Object oWebGrid1 is a cWebList
         Set Server to oEquipo_DD
         Set piColumnSpan to 2
+        
+        //sprint 2//
+        
+                Set pbServerOnRowClick to True
+        WebRegisterPath ntNavigateForward oEquipoZoomView
+
+        Procedure OnRowClick String sRowID Integer iColumnIndex
+            String sCurrentRowID
+
+            WebGet psCurrentRowID to sCurrentRowID
+            If (sRowID = "" or sRowID <> sCurrentRowID) Procedure_Return
+
+            Send NavigatePath
+        End_Procedure
+        
+        //
         
         Object oWebColumn1 is a cWebColumn
             Entry_Item equipo.ID

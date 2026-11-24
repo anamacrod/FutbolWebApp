@@ -2,22 +2,6 @@
 Use cConnection.pkg
 Use cWebMenuItem.pkg
 
-// Inclusión de todas las vistas del proyecto al principio para evitar referencias no resueltas
-Use SessionManager.wo
-Use Login.wo
-Use WebResourceManager.wo
-Use Dashboard.wo
-Use EntrenadoresView.wo
-Use JugadoresView.wo
-Use EquipoView.wo
-Use LigaView.wo
-Use PosicionView.wo
-Use EntrenadoresZoomView.wo
-Use EquipoZoomView.wo
-Use JugadoresZoomView.wo
-Use LigaZoomView.wo
-Use PosicionZoomView.wo
-
 
 Object oApplication is a cApplication
     Object oConnection is a cConnection
@@ -38,6 +22,22 @@ Object oWebApp is a cWebApp
     Object oViewStack is a cWebViewStack
     End_Object
     
+    // Inclusión de todas las vistas del proyecto al principio para evitar referencias no resueltas
+    Use SessionManager.wo
+    Use Login.wo
+    Use WebResourceManager.wo
+    Use Dashboard.wo
+    Use EntrenadoresView.wo
+    Use JugadoresView.wo
+    Use EquipoView.wo
+    Use LigaView.wo
+    Use PosicionView.wo
+    Use EntrenadoresZoomView.wo
+    Use EquipoZoomView.wo
+    Use JugadoresZoomView.wo
+    Use LigaZoomView.wo
+    Use PosicionZoomView.wo
+
     Procedure HideHeader
         WebSet pbRender of oHeaderPanel to False
     End_Procedure
@@ -256,12 +256,6 @@ Object oWebApp is a cWebApp
     End_Object    
 
     Set phoDefaultView to oDashboard
-
-    Use EntrenadoresZoomView.wo
-    Use EquipoZoomView.wo
-    Use JugadoresZoomView.wo
-    Use LigaZoomView.wo
-    Use PosicionZoomView.wo
 
 End_Object
 

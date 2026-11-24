@@ -33,7 +33,7 @@ Object oDashboard is a cWebView
             Set piColumnSpan to 4
             Set psCSSClass to "DashboardTile TileLiga"
             
-            WebRegisterPath ntNavigateBegin oLigaView
+            WebRegisterPath ntNavigateForward oLigaView
             
             Procedure OnClick
                 Forward Send OnClick
@@ -47,7 +47,7 @@ Object oDashboard is a cWebView
             Set piColumnSpan to 4
             Set psCSSClass to "DashboardTile TileEquipo"
             
-            WebRegisterPath ntNavigateBegin oEquipoView
+            WebRegisterPath ntNavigateForward oEquipoView
             
             Procedure OnClick
                 Forward Send OnClick
@@ -61,7 +61,7 @@ Object oDashboard is a cWebView
             Set piColumnSpan to 4
             Set psCSSClass to "DashboardTile TileEntrenador"
             
-            WebRegisterPath ntNavigateBegin oEntrenadoresView
+            WebRegisterPath ntNavigateForward oEntrenadoresView
             
             Procedure OnClick
                 Forward Send OnClick
@@ -75,7 +75,7 @@ Object oDashboard is a cWebView
             Set piColumnSpan to 6
             Set psCSSClass to "DashboardTile TileJugador"
             
-            WebRegisterPath ntNavigateBegin oJugadoresView
+            WebRegisterPath ntNavigateForward oJugadoresView
             
             Procedure OnClick
                 Forward Send OnClick
@@ -89,7 +89,7 @@ Object oDashboard is a cWebView
             Set piColumnSpan to 6
             Set psCSSClass to "DashboardTile TilePosicion"
             
-            WebRegisterPath ntNavigateBegin oPosicionView
+            WebRegisterPath ntNavigateForward oPosicionView
             
             Procedure OnClick
                 Forward Send OnClick
