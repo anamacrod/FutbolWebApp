@@ -1,7 +1,7 @@
 ﻿Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebForm.pkg
-Use cWebGrid.pkg
+Use cWebList.pkg
 Use cWebColumn.pkg
 Use cjugadorDataDictionary.dd
 
@@ -11,6 +11,7 @@ Object oJugadoresView is a cWebView
     Set peLayoutType to ltGrid
     Set piColumnCount to 2
     Set piRowCount to 1
+    Set peViewType to vtSelect
     
     Object oJugador_DD is a cjugadorDataDictionary
     End_Object
@@ -18,9 +19,25 @@ Object oJugadoresView is a cWebView
     Set Main_DD to oJugador_DD
     Set Server to oJugador_DD
 
-    Object oWebGrid1 is a cWebGrid
+    Object oWebGrid1 is a cWebList
         Set Server to oJugador_DD
         Set piColumnSpan to 2
+        
+        //Sprint 2: Undefined · Ver el catálogo de posiciones desde un jugador
+        
+        Set pbServerOnRowClick to True
+        WebRegisterPath ntNavigateForward oJugadoresZoomView
+
+        Procedure OnRowClick String sRowID Integer iColumnIndex
+            String sCurrentRowID
+
+            WebGet psCurrentRowID to sCurrentRowID
+            If (sRowID = "" or sRowID <> sCurrentRowID) Procedure_Return
+
+            Send NavigatePath
+        End_Procedure
+        
+        //
         
         Object oWebColumn1 is a cWebColumn
             Entry_Item jugador.ID

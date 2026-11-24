@@ -21,7 +21,7 @@ Object oPosicionZoomView is a cWebView
     Object oWebMainPanel is a cWebPanel
         Set peLayoutType to ltGrid
         Set piColumnCount to 12
-        Set piColumnSpan to 12
+        //Set piColumnSpan to 12
 
         Object oIdForm is a cWebForm
             Entry_Item posicion.ID
